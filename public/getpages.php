@@ -98,7 +98,7 @@
 	// Parse the Topicfile to find WikiLinks
 	//-------------------------------------------------------------------------------------------
 
-	$i=0;
+	$i=0; //ø what is it?
 	$link[0][0] = "";
 
 	echo "<map version=\"0.8.0\">\n";
@@ -173,7 +173,12 @@
 				$ttorg = substr($contents,strpos($contents,$chapEnd)+2, 500);
 				$tooltip = createToolTipText($ttorg, 150);
 
-				$wikilink  = 'http://'.$wiki.$access_path.'/'.$topic.'#'.$wChap;
+				if($wiki == "movilab.org"){
+					$wikilink = 'http://'.$wiki.$access_path.'/index.php?title='.$topic.'#'.$wChap;
+				}else{
+					$wikilink  = 'http://'.$wiki.$access_path.'/'.$topic.'#'.$wChap;
+				}
+				
 				echo  "<node TEXT=\"".cleanText($Chap)."\" WIKILINK = \"".cleanWikiLink($wikilink)."\" TOOLTIPTEXT = \"".$tooltip."\" STYLE=\"bubble\">\n";
 				//echo  '<node TEXT="'.cleanText($Chap).'" WIKILINK = "'.cleanWikiLink($wikilink).'"  STYLE="bubble">/n';
 				//echo 'node TEXT="'.$Chap.'" STYLE="bubble"><br>';
@@ -216,7 +221,12 @@
 				$ttorg = substr($contents,strpos($contents,$subChapEnd)+3, 500);
 				//$tooltip = createToolTipText($ttorg, 150);
 
-				$wikilink  = 'http://'.$wiki.$access_path.'/'.$topic.'#'.$wSubChap;
+				
+				if($wiki == "movilab.org"){
+					$wikilink = 'http://'.$wiki.'/index.php?title='.$topic.'#'.$wChap;
+				}else{
+					$wikilink  = 'http://'.$wiki.$access_path.'/'.$topic.'#'.$wSubChap;
+				}
 				echo  "<node TEXT=\"".cleanText($SubChap)."\" WIKILINK = \"".cleanWikiLink($wikilink)."\" TOOLTIPTEXT = \"".$tooltip."\" STYLE=\"bubble\">\n";
 				//echo  '<node TEXT="'.cleanText($Chap).'" WIKILINK = "'.cleanWikiLink($wikilink).'"  STYLE="bubble">/n';
 				//echo 'node TEXT="'.$Chap.'" STYLE="bubble"><br>';
