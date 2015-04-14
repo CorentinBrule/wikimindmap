@@ -27,23 +27,30 @@
 	//echo $topic;
 	$topic = urldecode($topic);
 	$topic = str_replace(" ", "_", $topic);
-
+	
 	//Wiki specific Variables
 	$index_path = "";
 	$access_path = "";
+	$action = ""; //type of action to access the wiki source code
 
 	switch ($wiki) {
+		case "movilab.org":
+			$index_path = "";
+			$acess_path = "";
+			$action = "&action=edit";
+			break;
 		case "www.self-qs.de":
 			$index_path = "";
 			$access_path = "/m3WDB";
+			$action = "&action=raw";
 			break;
 		default:
 			$index_path = "/w";
 			$access_path = "/wiki";
+			$action = "&action=raw";
 			break;
 	}
-
-	$url = 'http://'.$wiki.$index_path.'/index.php?title='.$topic.'&action=raw';
+	$url = 'http://'.$wiki.$index_path.'/index.php?title='.$topic.$action;
 	//-------------------------------------------------------------------------------------------
 	// Defaults for the Parser
 	//-------------------------------------------------------------------------------------------
