@@ -103,7 +103,13 @@
 
 	echo "<map version=\"0.8.0\">\n";
 	echo "<edge STYLE=\"bezier\"/>\n";
-	$wikilink  = 'http://'.$wiki.'/wiki/'.$topic;
+	
+	if($wiki == "movilab.org"){
+		$wikilink = 'http://'.$wiki.$index_path.'/index.php?title='.$topic;
+	}else{
+		$wikilink = 'http://'.$wiki.$access_path.'/'.$topic;
+	}
+
 	$ttorg = substr($contents,0,500);
 	//echo 'TTROG: '.$ttorg;
 	$tooltip = createToolTipText($ttorg, 300);
