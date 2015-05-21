@@ -58,7 +58,8 @@ if (isset($_GET["topic"])) {
                     <option <?php echo ($wiki == "pl.wikipedia.org" ? "selected" : ""); ?> >pl.wikipedia.org</option>
                     <option <?php echo ($wiki == "pt.wikipedia.org" ? "selected" : ""); ?> >pt.wikipedia.org</option>
                     <option <?php echo ($wiki == "sv.wikipedia.org" ? "selected" : ""); ?> >sv.wikipedia.org</option>
-		    <option <?php echo ($wiki == "movilab.org" ? "selected" : ""); ?> >movilab.org</option>
+					<option <?php echo ($wiki == "movilab.org" ? "selected" : ""); ?> >movilab.org</option>
+					<option <?php echo ($wiki == "LocalWiki" ? "selected" : ""); ?> >LocalWiki</option>
                 </select>
                 Enter your Topic:<input name="topic" type="text" value="<?php echo $topic; ?>">&nbsp;<input type="submit" value="Search">
             </p>

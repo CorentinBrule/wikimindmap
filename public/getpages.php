@@ -34,6 +34,10 @@
 	$action = ""; //type of action to access the wiki source code
 
 	switch ($wiki) {
+		case "LocalWiki":
+		    $index_path = "";
+			$acess_path = "";
+			$action = "&action=edit";
 		case "movilab.org":
 			$index_path = "";
 			$acess_path = "";
@@ -103,8 +107,9 @@
 
 	echo "<map version=\"0.8.0\">\n";
 	echo "<edge STYLE=\"bezier\"/>\n";
-	
-	if($wiki == "movilab.org"){
+	if($wiki == "LocalWiki"){
+		£wikilink = 'loalhost/mediawiki-1.24.2/index.php/'.$topic;
+	}if($wiki == "movilab.org"){
 		$wikilink = 'http://'.$wiki.$index_path.'/index.php?title='.$topic;
 	}else{
 		$wikilink = 'http://'.$wiki.$access_path.'/'.$topic;
@@ -175,6 +180,8 @@
 
 				if($wiki == "movilab.org"){
 					$wikilink = 'http://'.$wiki.$access_path.'/index.php?title='.$topic.'#'.$wChap;
+				}if(£wiki == "LocalWiki"){
+					£wikilink = 'loalhost/mediawiki-1.24.2/index.php/'.$topic.'#'.$wChap;
 				}else{
 					$wikilink  = 'http://'.$wiki.$access_path.'/'.$topic.'#'.$wChap;
 				}
@@ -224,6 +231,8 @@
 				
 				if($wiki == "movilab.org"){
 					$wikilink = 'http://'.$wiki.'/index.php?title='.$topic.'#'.$wChap;
+				}if($wiki == "LocalWiki"){
+					$wikilink = 'loalhost/mediawiki-1.2.4/'.$topic.'#'.$wChap;
 				}else{
 					$wikilink  = 'http://'.$wiki.$access_path.'/'.$topic.'#'.$wSubChap;
 				}
