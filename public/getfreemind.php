@@ -24,14 +24,13 @@
 	header('Cache-Control: store, cache');
 	header('Pragma: cache');
 
-
+    
 	$time_start = microtime(true);
 	$wiki = $_GET['Wiki'];
  	$topic = $_GET['Topic'];
 	//echo $topic;
 	$topic = urldecode($topic);
 	$topic = str_replace(" ", "_", $topic);
-
 	//Wiki specific Variables
 	$index_path = "";
 	$access_path = "";
@@ -47,7 +46,7 @@
 			break;
 	}
 
-	$url = 'http://'.$wiki.$index_path.'/index.php?title='.$topic.'&action=raw';
+	$url = $server.$wiki.$index_path.'/index.php?title='.$topic.'&action=raw';
 	//-------------------------------------------------------------------------------------------
 	// Defaults for the Parser
 	//-------------------------------------------------------------------------------------------

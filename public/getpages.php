@@ -1,4 +1,3 @@
-
 <?php
 /*
 	Copyright (C) 2010  Felix Nyffenegger
@@ -32,29 +31,36 @@
 	$index_path = "";
 	$access_path = "";
 	$action = ""; //type of action to access the wiki source code
+	$server = ""; 
 
 	switch ($wiki) {
 		case "LocalWiki":
 		    $index_path = "";
 			$acess_path = "";
 			$action = "&action=edit";
+			$server = "http://localhost/";
+			break;
 		case "movilab.org":
 			$index_path = "";
 			$acess_path = "";
 			$action = "&action=edit";
+			$server = "http://";
 			break;
 		case "www.self-qs.de":
 			$index_path = "";
 			$access_path = "/m3WDB";
 			$action = "&action=raw";
+			$server = "http://";
 			break;
 		default:
 			$index_path = "/w";
 			$access_path = "/wiki";
 			$action = "&action=raw";
+			$server = "http://";
 			break;
 	}
-	$url = 'http://'.$wiki.$index_path.'/index.php?title='.$topic.$action;
+	$url = $server.$wiki.$index_path.'/index.php?title='.$topic.$action;
+	
 	//-------------------------------------------------------------------------------------------
 	// Defaults for the Parser
 	//-------------------------------------------------------------------------------------------
@@ -107,12 +113,13 @@
 
 	echo "<map version=\"0.8.0\">\n";
 	echo "<edge STYLE=\"bezier\"/>\n";
+	
 	if($wiki == "LocalWiki"){
-		£wikilink = 'loalhost/mediawiki-1.24.2/index.php/'.$topic;
+		$wikilink = $server.$wiki.'/index.php/'.$topic;
 	}if($wiki == "movilab.org"){
-		$wikilink = 'http://'.$wiki.$index_path.'/index.php?title='.$topic;
+		$wikilink = $server.$wiki.$index_path.'/index.php?title='.$topic;
 	}else{
-		$wikilink = 'http://'.$wiki.$access_path.'/'.$topic;
+		$wikilink = $server.$wiki.$access_path.'/'.$topic;
 	}
 
 	$ttorg = substr($contents,0,500);
@@ -179,11 +186,11 @@
 				$tooltip = createToolTipText($ttorg, 150);
 
 				if($wiki == "movilab.org"){
-					$wikilink = 'http://'.$wiki.$access_path.'/index.php?title='.$topic.'#'.$wChap;
-				}if(£wiki == "LocalWiki"){
-					£wikilink = 'loalhost/mediawiki-1.24.2/index.php/'.$topic.'#'.$wChap;
+					$wikilink = $server.$wiki.$access_path.'/index.php?title='.$topic.'#'.$wChap;
+				}if($wiki == "LocalWiki"){
+					$wikilink = $server.$wiki.'/index.php/'.$topic.'#'.$wChap;
 				}else{
-					$wikilink  = 'http://'.$wiki.$access_path.'/'.$topic.'#'.$wChap;
+					$wikilink  = $server.$wiki.$access_path.'/'.$topic.'#'.$wChap;
 				}
 				
 				echo  "<node TEXT=\"".cleanText($Chap)."\" WIKILINK = \"".cleanWikiLink($wikilink)."\" TOOLTIPTEXT = \"".$tooltip."\" STYLE=\"bubble\">\n";
@@ -230,11 +237,11 @@
 
 				
 				if($wiki == "movilab.org"){
-					$wikilink = 'http://'.$wiki.'/index.php?title='.$topic.'#'.$wChap;
+					$wikilink = $server.$wiki.'/index.php?title='.$topic.'#'.$wChap;
 				}if($wiki == "LocalWiki"){
-					$wikilink = 'loalhost/mediawiki-1.2.4/'.$topic.'#'.$wChap;
+					$wikilink = $server.$wiki.'/index.php/'.$topic.'#'.$wChap;
 				}else{
-					$wikilink  = 'http://'.$wiki.$access_path.'/'.$topic.'#'.$wSubChap;
+					$wikilink  = $server.$wiki.$access_path.'/'.$topic.'#'.$wSubChap;
 				}
 				echo  "<node TEXT=\"".cleanText($SubChap)."\" WIKILINK = \"".cleanWikiLink($wikilink)."\" TOOLTIPTEXT = \"".$tooltip."\" STYLE=\"bubble\">\n";
 				//echo  '<node TEXT="'.cleanText($Chap).'" WIKILINK = "'.cleanWikiLink($wikilink).'"  STYLE="bubble">/n';
@@ -299,7 +306,7 @@
 						$link[1][$i] = str_replace(" ","_", $tag);
 						$link[0][$i] = $tag;
 					}
-					$wikilink    = 'http://'.$wiki.$access_path.'/'.$link[1][$i];
+					$wikilink    = $server.$wiki.$access_path.'/'.$link[1][$i];
 					$mmlink	 = 'viewmap.php?wiki='.$wiki.'&topic='.$link[1][$i];
 
 					echo "<node TEXT=\"".cleanText($link[0][$i])."\" WIKILINK=\"".cleanWikiLink($wikilink)."\" MMLINK=\"".$mmlink."\" STYLE=\"fork\">\n";
